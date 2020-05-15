@@ -1,4 +1,4 @@
-# smartContract
+# CryptoMoon smartContract
 Crypto Moon Official repository
 
 This is the official github of Crypto Moon DApp !
