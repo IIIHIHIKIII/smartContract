@@ -14,7 +14,7 @@ pragma solidity ^0.5.0;
 //  You WIN the jackpot set to 8 ETH (totalBet variable) (0,08 ETH * 100) (minus house fee actually set to 3% -> Yes I'm not volunteer sorry :sunglasses:). 
 //  You open a bottle of Champagne in my honor and the smart contract restarts the game with the terminate() method
 
-import "github.com/provable-things/ethereum-api/blob/master/oraclizeAPI_0.5.sol";
+import "https://raw.githubusercontent.com/provable-things/ethereum-api/master/oraclizeAPI_0.5.sol";
 
 contract cryptoMoonContract is usingOraclize{
     //The game can have 3 states 
