@@ -64,7 +64,7 @@ contract cryptoMoonContract is usingOraclize{
     
     //CONSTANT
     //Random.org encrypted key 
-    string constant RANDOM_ORG_API_KEY = "BIYEtIOoJ1rJSQ1m0MrnWjdmw4Yr7Bnmu8CdvInMMDJMSsl/ytm0iFVIwBmObX3dxPShZdQt5akS5j0V+pLQ/RamH8PSwKnE/FtVeXptpSTxGoFjRsSCY6nYECKQ5mDPGbbgppNLlXsLftZv+pjPu3q86gbk";
+    string constant RANDOM_ORG_API_KEY = "BJU1MK4sf6ICiM9YH9uEqwroIICZI6d5ADsqmVBZUbxlYrbtqXT5+Kjbz1rCmF8vIeJRMVwhEhf1YChPuG8kbg4i/4A8DKTZ5AAeHYCB2W22zMnfzJXQkf5z7gTi12pjJCWu5WaSeDcvGWDugJiblukL10Fi";
    
    
     modifier onlyIf(bool _condition) {
