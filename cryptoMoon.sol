@@ -103,6 +103,7 @@ contract cryptoMoonContract is usingOraclize{
         
         require((numberOfTickets * ticketPrice) == msg.value);
         require((numberOfTickets + ticketsAlreadyOwn) <= maxTicketPerUser);
+        require((numberOfTickets + users.length) <= participantLimit);
         
         for (uint i=0; i<numberOfTickets ; i++){
             //For each ticket we add the player address in the users map
