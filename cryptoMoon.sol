@@ -51,6 +51,8 @@ contract cryptoMoonContract is usingOraclize{
     uint public lastWinnerIndex = 0;
     //maxTicketPerUser : Maximum tickets buyable per user per game
     uint public maxTicketPerUser = 10;
+    //maxTicketPerUser : Maximum tickets buyable per user per game
+    uint public ticketPriceMax = 10;
     
     //Events
     //event payout : triggered when a player has won the jackpot
@@ -77,9 +79,11 @@ contract cryptoMoonContract is usingOraclize{
         _;
     }
 
-    constructor(uint _participantLimit) public {
+    constructor(uint _participantLimit, uint _ticketPriceMax, uint _maxTicketPerUser) public {
         admin = msg.sender;
         participantLimit = _participantLimit;
+        ticketPriceMax = _ticketPriceMax;
+        maxTicketPerUser = _maxTicketPerUser;
         gasLimitsForOraclize[0] = 700000;
         gasLimitsForOraclize[1] = 1500000;
         gasLimitsForOraclize[2] = 2000000;
@@ -97,6 +101,7 @@ contract cryptoMoonContract is usingOraclize{
         uint numberOfTickets = msg.value / ticketPrice;
         uint ticketsAlreadyOwn = (usersBet[gameIndex][msg.sender] / ticketPrice);
         
+        require((numberOfTickets * ticketPrice) == msg.value);
         require((numberOfTickets + ticketsAlreadyOwn) <= maxTicketPerUser);
         
         for (uint i=0; i<numberOfTickets ; i++){
@@ -152,7 +157,7 @@ contract cryptoMoonContract is usingOraclize{
         //Reset the state to State.Created, owner can edit participantLimit & minimum bet if need during this state
         currentState = State.Created;
         //Pseudo random ticket price in wei - It's not mandatory to get a true random number for this case because ticket price is not as sensitive as the winnerRandomIndex
-        ticketPrice = ((uint(blockhash(block.number-1)) % 10) + 1) * 10000000000000000;
+        ticketPrice = ((uint(blockhash(block.number-1)) % ticketPriceMax) + 1) * 10000000000000000;
         //Calcule gas limit for oraclize depending on ticket price
         calculateGasLimitForOraclize();
         //Emit gameStart event because config has changed
@@ -241,6 +246,10 @@ contract cryptoMoonContract is usingOraclize{
         maxTicketPerUser = _maxTicketPerUser;
     }
     
+    //A method to edit ticketPriceMax 
+    function setTicketPriceMax(uint _ticketPriceMax) public onlyIf(msg.sender == admin){
+        ticketPriceMax = _ticketPriceMax;
+    }
     
     //A method to get all curent users in this game
     function getUsers() public view returns (address payable[] memory) {
