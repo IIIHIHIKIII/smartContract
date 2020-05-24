@@ -51,7 +51,7 @@ contract cryptoMoonContract is usingOraclize{
     uint public lastWinnerIndex = 0;
     //maxTicketPerUser : Maximum tickets buyable per user per game
     uint public maxTicketPerUser = 10;
-    //ticketPriceMax : Ticket price max in ETH
+    //ticketPriceMax : Maximum Tickets amount max in ETH
     uint public ticketPriceMax = 10;
     
     //Events
